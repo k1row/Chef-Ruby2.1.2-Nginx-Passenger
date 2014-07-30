@@ -40,24 +40,6 @@ http {
     passenger_root /usr/local/share/ruby/gems/2.0/gems/passenger-<%= node['nginx']['passenger']['version'] %>;
     passenger_ruby /usr/local/rbenv/versions/2.1.2/bin/ruby;
 
-    #gzip  on;
-    #gzip_http_version 1.0;
-    #gzip_types        text/plain
-    #                  text/xml
-    #                  text/css
-    #                  application/xml
-    #                  application/xhtml+xml
-    #                  application/rss+xml
-    #                  application/atom_xml
-    #                  application/javascript
-    #                  application/x-javascript
-    #                  application/x-httpd-php;
-    #gzip_disable      "MSIE [1-6]\.";
-    #gzip_disable      "Mozilla/4";
-    #gzip_comp_level   1;
-    #gzip_buffers      4 8k;
-    #gzip_min_length   1100;
-
     include /etc/nginx/conf.d/*.conf;
     index   index.html index.htm;
 }

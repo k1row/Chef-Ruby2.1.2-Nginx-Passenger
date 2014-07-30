@@ -75,9 +75,9 @@ template "nginx.conf" do
 	notifies :reload,'service[nginx]'
 end
 
-template "airt.conf.erb" do
-	path "/etc/nginx/conf.d/airt.conf"
-	source "airt.conf.erb"
+template "server.conf.erb" do
+	path "/etc/nginx/conf.d/server.conf"
+	source "server.conf.erb"
 	owner "root"
 	group "root"
 	mode 0644
