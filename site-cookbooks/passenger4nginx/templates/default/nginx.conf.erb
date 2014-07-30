@@ -1,0 +1,63 @@
+#user  nginx;
+worker_processes  <%= node[:nginx][:worker_processes] %>;
+worker_rlimit_nofile <%= node[:nginx][:worker_rlimit_nofile] %>;
+
+error_log  <%= node[:nginx][:log_dir] %>/error.log <%= node[:nginx][:error_log_level] %>;
+pid        <%= node[:nginx][:pid] %>;
+
+events {
+    worker_connections  <%= node[:nginx][:worker_connections] %>;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for" "$request_time"';
+
+    log_format ltsv "time:$time_local\t"
+                    "host:$remote_addr\t"
+                    "forwardedfor:$http_x_forwarded_for\t"
+                    "req:$request\t"
+                    "status:$status\t"
+                    "size:$body_bytes_sent\t"
+                    "referer:$http_referer\t"
+                    "ua:$http_user_agent\t"
+                    "reqtime:$request_time\t"
+                    "cache:$upstream_http_x_cache\t"
+                    "apptime:$upstream_response_time\t"
+                    "vhost:$host";
+
+    access_log  <%= node[:nginx][:log_dir] %>/access.log  ltsv;
+
+    sendfile        on;
+
+    keepalive_timeout  <%= node[:nginx][:keepalive_timeout] %>;
+    server_tokens off;
+
+    passenger_root /usr/local/share/ruby/gems/2.0/gems/passenger-<%= node['nginx']['passenger']['version'] %>;
+    passenger_ruby /usr/local/rbenv/versions/2.1.2/bin/ruby;
+
+    #gzip  on;
+    #gzip_http_version 1.0;
+    #gzip_types        text/plain
+    #                  text/xml
+    #                  text/css
+    #                  application/xml
+    #                  application/xhtml+xml
+    #                  application/rss+xml
+    #                  application/atom_xml
+    #                  application/javascript
+    #                  application/x-javascript
+    #                  application/x-httpd-php;
+    #gzip_disable      "MSIE [1-6]\.";
+    #gzip_disable      "Mozilla/4";
+    #gzip_comp_level   1;
+    #gzip_buffers      4 8k;
+    #gzip_min_length   1100;
+
+    include /etc/nginx/conf.d/*.conf;
+    index   index.html index.htm;
+}

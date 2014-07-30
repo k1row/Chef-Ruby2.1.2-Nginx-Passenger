@@ -1,0 +1,11 @@
+Host github.com
+  User git
+  Port 22
+  Hostname github.com
+  IdentityFile ~/.ssh/authorized_keys
+  TCPKeepAlive yes
+  IdentitiesOnly yes
+
+host *
+  stricthostkeychecking no
+  IdentityFile ~/.ssh/<%= @key_name %>
