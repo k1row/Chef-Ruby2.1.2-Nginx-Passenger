@@ -37,8 +37,8 @@ http {
     keepalive_timeout  <%= node[:nginx][:keepalive_timeout] %>;
     server_tokens off;
 
-    passenger_root /usr/local/share/ruby/gems/2.0/gems/passenger-<%= node['nginx']['passenger']['version'] %>;
-    passenger_ruby /usr/local/rbenv/versions/2.1.2/bin/ruby;
+    passenger_root <%= node[:nginx][:passenger][:root] %>/passenger-<%= node[:nginx][:passenger][:version] %>;
+    passenger_ruby <%= node[:nginx][:passenger][:ruby] %>;
 
     include /etc/nginx/conf.d/*.conf;
     index   index.html index.htm;

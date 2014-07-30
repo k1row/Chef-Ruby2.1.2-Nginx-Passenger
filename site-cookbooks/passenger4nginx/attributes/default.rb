@@ -12,6 +12,7 @@ default[:nginx][:server_name] = "54.92.87.182"
 default[:nginx][:root] = "/tmp/airt-server/current/public"
 
 default[:nginx][:version] = "1.4.7"
-default[:nginx][:passenger][:version] = "4.0.48"
 
-default[:nginx][:gem][:path] = "/usr/local/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems"
+default[:nginx][:passenger][:version] = "4.0.48"
+default[:nginx][:passenger][:root] = "/usr/local/share/ruby/gems/2.0/gems"
+default[:nginx][:passenger][:ruby] = "/usr/local/rbenv/versions/2.1.2/bin/ruby"

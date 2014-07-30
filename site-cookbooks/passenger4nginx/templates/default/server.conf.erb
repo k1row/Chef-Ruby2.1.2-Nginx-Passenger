@@ -1,7 +1,7 @@
 server {
-    listen <%= node['nginx']['port'] %>;
+    listen <%= node[:nginx][:port] %>;
     server_name localhost;
-    root <%= node['nginx']['root'] %>;
+    root <%= node[:nginx][:root] %>;
 
     location / {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -12,6 +12,6 @@ server {
 
     error_page   500 502 503 504  /50x.html;
     location = /50x.html {
-        root <%= node['nginx']['root'] %>;
+        root <%= node[:nginx][:root] %>;
     }
 }

@@ -39,7 +39,7 @@ execute "yum-update" do
   action :run
 end
 
-%w{gcc gcc-c++ make wget patch svn autoconf byacc sqlite-devel zlib-devel openssl-devel ImageMagick-devel mysql-devel telnet curl curl-devel readline-devel ncurses-devel gdbm-devel  freetype-devel fontconfig-devel libxml2 libxml2-devel libxslt libxslt-devel}.each do |p|
+%w{gcc gcc-c++ make wget patch svn autoconf byacc sqlite-devel zlib-devel openssl-devel ImageMagick-devel mysql-devel telnet curl curl-devel readline-devel ncurses-devel gdbm-devel freetype-devel fontconfig-devel libxml2 libxml2-devel libxslt libxslt-devel}.each do |p|
 	package p do
 		action :install
 	end
